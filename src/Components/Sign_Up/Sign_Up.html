@@ -42,12 +42,12 @@ Apply CSS styling to the Sign-up form based on the design from a previous exerci
                 <div class="form-group
                 ">
                     <label for="phone">Phone Number</label>
-                    <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+                    <input type="text" id="phone" name="phone" placeholder="Enter your phone number" pattern="\d{10}" required>
                 </div>
                 <div class="form-group
                 ">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                 </div>
                 <div class="form-group
                 ">

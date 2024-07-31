@@ -1,7 +1,11 @@
 // react function add Navbar.html inside return
+// add in Navbar.js links for Login.js and Sign_Up.js
 
 import React from "react";
 import "./Navbar.css";
+import { Link } from 'react-router-dom';
+
+
 
 function Navbar() {
   return (
@@ -12,23 +16,25 @@ function Navbar() {
         </div>
         <ul className="nav-links">
           <li>
+
             <a href="#home">Home</a>
           </li>
           <li>
             <a href="#appointment">Appointment</a>
+
           </li>
           <li>
             <a href="#reviews">Reviews</a>
           </li>
           <li>
-            <a href="../Sign_Up/Sign_Up.html">
+            <Link to="signup">
               <button>Sign Up</button>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="../Login/Login.html">
+            <Link to="login">
               <button>Login</button>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
