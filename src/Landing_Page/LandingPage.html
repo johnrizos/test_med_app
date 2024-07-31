@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="./LandingPage.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <h4>StayHealthy</h4>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#services">Home</a></li>
+        <li><a href="#about">Appointment</a></li>
+        <li><a href="#contact">Reviews</a></li>
+        <li><button>Sign Up</button></li>
+        <li><button>Login</button></li>
+      </ul>
+    </nav>
+    <section class="hero-section">
+      <div>
+        <div data-aos="fade-up" class="flex-hero">
+          <h1>
+            Your Health<br />
+            <span class="text-gradient"> Our Responsibility </span>
+          </h1>
+          <div class="blob-cont">
+            <div class="blue blob"></div>
+          </div>
+          <div class="blob-cont">
+            <div class="blue1 blob"></div>
+          </div>
+          <h4>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque at
+            quae ducimus. Suscipit omnis quibusdam non cum rem voluptatem!
+          </h4>
+          <a href="#services">
+            <button class="button">Get Started</button>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- login modal -->
+    <div id="login-modal">
+    <section class="section-login-signUp">
+      <form class="sign-up-form">
+        <h1>Login</h1>
+        <p style="text-align: center; margin-bottom: 10px">
+          Are you a new member?
+          <span style="color: #2b4bf0"><b>Sign Up Here</b></span>
+        </p>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="form-group">
+          <button type="submit">Login</button>
+          <button type="reset">Reset</button>
+        </div>
+
+        <p style="color: #535151; text-align: center">Forgot Password?</p>
+      </form>
+    </section>
+  </div>
+    <!-- end of login modal -->
+
+    <!-- sign up modal -->
+    <div id="sign-up-modal">
+    <section class="section-login-signUp" >
+      <div class="sign-up-form">
+        <h1>Sign Up</h1>
+        <p style="text-align: center">
+          Already a member? <span style="color: #2b4bf0"><b>Login</b></span>
+        </p>
+        <form action="">
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select name="role" id="role">
+              <option value="patient">Patient</option>
+              <option value="doctor">Doctor</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+          </div>
+          <div class="form-group">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+    <!-- end of sign up modal -->
+  </body>
+</html>
