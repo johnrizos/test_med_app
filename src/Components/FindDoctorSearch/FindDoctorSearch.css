@@ -1,0 +1,25 @@
+.section-find-doctor{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: white;
+    padding: 80px 0 0 0;
+    width: 80%;
+    margin:auto;
+
+}
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    color:#4CAF50;
+}
+
+.search-doctor-list li:hover{
+    background-color: #f9f9f9;
+    cursor: pointer;
+
+}
+
+
+
