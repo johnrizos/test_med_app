@@ -1,22 +1,32 @@
 import React, { useState } from "react";
 import "./FindDoctorSearch.css";
 import consulting from "./images/consulting.png";
+import DoctorCard from "../DoctorCard/DoctorCard";
 
 const FindDoctorSearch = () => {
-  const specialityListData = {1: "Cardiologist",2: "Dermatologist",3: "Dentist",4: "Gynecologist",5: "Neurologist",6: "Orthopedic",7: "Pediatrician",8: "Psychiatrist",9: "Urologist",};
+  const specialityListData = {
+    1: "Cardiologist",
+    2: "Dermatologist",
+    3: "Dentist",
+    4: "Gynecologist",
+    5: "Neurologist",
+    6: "Orthopedic",
+    7: "Pediatrician",
+    8: "Psychiatrist",
+    9: "Urologist",
+  };
   const handleSpeciality = (e) => {
     console.log(e.target.value);
   };
   const handleSearch = (e) => {
     console.log(e.target.value);
   };
-  
+
   const [listFlag, setListFlag] = useState(false);
 
   const handleListFlag = () => {
     setListFlag(!listFlag);
-    };
-
+  };
 
   const [specialitySearchInput, setSpecialitySearchInput] = useState("");
   const [specialityList, setSpecialityList] = useState(specialityListData);
@@ -65,30 +75,77 @@ const FindDoctorSearch = () => {
                   }}
                 />
                 <span className="input-group-text" id="basic-addon2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16"
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-search"
+                    viewBox="0 0 16 16"
                   >
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                   </svg>
                 </span>
               </div>
-{listFlag && (
-              <div className="search-doctor-list border border-2 ">
-                <ul className="p-0 m-0">
-                  { Object.keys(specialityList).map((key) => (
-                    <li
-                      className="border-bottom  border-1 p-2"
-                      value={specialityList[key]}
-                      key={key}
-                      onClick={() => console.log(specialityList[key])}
-                    >
-                      {specialityList[key]}
-                    </li>
-                  ))}
-                </ul>
-
-              </div> )}
+              {listFlag && (
+                <div className="search-doctor-list border border-2 ">
+                  <ul className="p-0 m-0">
+                    {Object.keys(specialityList).map((key) => (
+                      <li
+                        className="border-bottom  border-1 p-2"
+                        value={specialityList[key]}
+                        key={key}
+                        onClick={() => console.log(specialityList[key])}
+                      >
+                        {specialityList[key]}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
+        </section>
+        <section>
+          <div class="row">
+            <div class="col m-1">
+              <DoctorCard
+                name="John"
+                speciality="Dentist"
+                experience="9"
+                rating=""
+                image=""
+              />
+            </div>
+            <div class="col m-1">
+              <DoctorCard
+                name="John"
+                speciality="Dentist"
+                experience="9"
+                rating=""
+                image=""
+              />
+            </div>
+            <div class="col m-1">
+              <DoctorCard
+                name="John"
+                speciality="Dentist"
+                experience="9"
+                rating=""
+                image=""
+              />
+            </div>
+            <div class="col m-1">
+              <DoctorCard
+                name="John"
+                speciality="Dentist"
+                experience="9"
+                rating=""
+                image=""
+              />
+            </div>
+          </div>
+
         </section>
       </div>
     </>
