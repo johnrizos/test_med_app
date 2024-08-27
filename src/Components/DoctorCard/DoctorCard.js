@@ -15,7 +15,7 @@ const DoctorCard = (props) => {
           <p className="card-title text-center">{props.name}</p>
           <p className="card-title text-center">{props.speciality}</p>
           <p className="card-title text-center">{props.experience} years experience</p>
-          <p className="card-title text-center">Ratings {props.rating ?  Array.from({ length: props.rating }).map((_, index) => (
+          <p className="card-title text-center">Ratings: {props.rating ?  Array.from({ length: props.rating }).map((_, index) => (
             <span key={index}>{starImage}</span>
           )) : ""} </p>
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./FindDoctorSearch.css";
 import consulting from "./images/consulting.png";
 import DoctorCard from "../DoctorCard/DoctorCard";
+import AppointmentForm from "../AppointmentForm/AppointmentForm";
 
 const FindDoctorSearch = () => {
   const specialityListData = {
@@ -41,7 +42,51 @@ const FindDoctorSearch = () => {
       experience: 15,
       rating: 5,
     },
+    5: {
+      name: "Dr. Maria Smith",
+      specialist: 1,
+      experience: 10,
+      rating: 4,
+    },
+    6: {
+      name: "Dr. George Brown",
+      specialist: 1,
+      experience: 8,
+      rating: 3,
+    },
+    7: {
+      name: "Dr. Maria Smith",
+      specialist: 1,
+      experience: 10,
+      rating: 4,
+    },
+    8: {
+      name: "Dr. George Brown",
+      specialist: 1,
+      experience: 8,
+      rating: 3,
+    },
+    9: {
+      name: "Dr. Maria Smith",
+      specialist: 1,
+      experience: 10,
+      rating: 4,
+    },
+    10: {
+      name: "Dr. George Brown",
+      specialist: 1,
+      experience: 8,
+      rating: 3,
+    },
+    11: {
+      name: "Dr. Maria Smith",
+      specialist: 1,
+      experience: 10,
+      rating: 4,
+    },
   };
+
+  const [selectedDoctorId, setSelectedDoctorId] = useState(null);
 
   const [doctorsFilter, setDoctorsFilter] = useState({});
 
@@ -57,12 +102,10 @@ const FindDoctorSearch = () => {
   };
 
 
-  const handleSpeciality = (e) => {
-    console.log(e.target.value);
-  };
-  const handleSearch = (e) => {
-    console.log(e.target.value);
-  };
+  const [showModal, setShowModal] = useState(true);
+
+  const handleShow = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
 
   const [listFlag, setListFlag] = useState(false);
 
@@ -178,6 +221,9 @@ const FindDoctorSearch = () => {
           </div>
         </section>
       </div>
+      {showModal && (
+      <AppointmentForm  handleClose={handleClose} />
+      )}
     </>
   );
 };
