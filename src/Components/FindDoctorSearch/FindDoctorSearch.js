@@ -15,6 +15,48 @@ const FindDoctorSearch = () => {
     8: "Psychiatrist",
     9: "Urologist",
   };
+
+  const doctors = {
+    1: {
+      name: "Dr. John Doe",
+      specialist: 3,
+      experience: 9,
+      rating: 5,
+    },
+    2: {
+      name: "Dr. Chris Red",
+      specialist: 3,
+      experience: 13,
+      rating: 4,
+    },
+    3: {
+      name: "Dr. Anna Green",
+      specialist: 3,
+      experience: 12,
+      rating: 5,
+    },
+    4: {
+      name: "Dr. John Rizos",
+      specialist: 3,
+      experience: 15,
+      rating: 5,
+    },
+  };
+
+  const [doctorsFilter, setDoctorsFilter] = useState({});
+
+  const findDoctorFromSpeciality = (doctors,speciality) => {
+    console.log("speciality",speciality);
+    
+    const doctorsFilter = Object.fromEntries(
+      Object.entries(doctors).filter(([key, value]) => Number(value.specialist) === Number(speciality))
+    );
+    console.log("doctorsFilter",doctorsFilter);
+    
+    setDoctorsFilter(doctorsFilter);
+  };
+
+
   const handleSpeciality = (e) => {
     console.log(e.target.value);
   };
@@ -24,9 +66,15 @@ const FindDoctorSearch = () => {
 
   const [listFlag, setListFlag] = useState(false);
 
+  let timeoutFlag = true;
   const handleListFlag = () => {
-    setListFlag(!listFlag);
-  };
+    if (!timeoutFlag) return;
+    timeoutFlag = false;
+    setTimeout(() => {
+      setListFlag(!listFlag);
+      timeoutFlag = true;
+    }
+    , 200);};
 
   const [specialitySearchInput, setSpecialitySearchInput] = useState("");
   const [specialityList, setSpecialityList] = useState(specialityListData);
@@ -49,7 +97,7 @@ const FindDoctorSearch = () => {
               <h1>Find Doctor Search</h1>
             </div>
             <img
-              style={{ textAlign: "center", display: "block", margin: "auto" }}
+              style={{ textAlign: "center", display: "block", margin: "auto",maxWidth:"100%" }}
               src={consulting}
               alt="doctor"
             />
@@ -95,7 +143,8 @@ const FindDoctorSearch = () => {
                         className="border-bottom  border-1 p-2"
                         value={specialityList[key]}
                         key={key}
-                        onClick={() => console.log(specialityList[key])}
+                        onClick={() => findDoctorFromSpeciality(doctors,key)
+                        }
                       >
                         {specialityList[key]}
                       </li>
@@ -106,46 +155,27 @@ const FindDoctorSearch = () => {
             </div>
           </div>
         </section>
-        <section>
-          <div class="row">
-            <div class="col m-1">
-              <DoctorCard
-                name="John"
-                speciality="Dentist"
-                experience="9"
-                rating=""
-                image=""
-              />
+        <section className="mt-4">
+          <p className="text-center">8 doctors available in</p>
+          <p className="text-center">
+            {" "}
+            Book appointments with minimum walt-time &verified doctor details
+          </p>
+        </section>
+        <section className="mt-4">
+          <div className="row justify-content-md-center">
+              {Object.keys(doctorsFilter).map((key) => (
+            <div className="col-md-3 col-12 col my-3" key={key}>
+                <DoctorCard
+                  name={doctors[key].name}
+                  speciality={specialityListData[doctors[key].specialist]}
+                  experience={doctors[key].experience}
+                  rating={doctors[key].rating}
+                  image=""
+                />
             </div>
-            <div class="col m-1">
-              <DoctorCard
-                name="John"
-                speciality="Dentist"
-                experience="9"
-                rating=""
-                image=""
-              />
-            </div>
-            <div class="col m-1">
-              <DoctorCard
-                name="John"
-                speciality="Dentist"
-                experience="9"
-                rating=""
-                image=""
-              />
-            </div>
-            <div class="col m-1">
-              <DoctorCard
-                name="John"
-                speciality="Dentist"
-                experience="9"
-                rating=""
-                image=""
-              />
-            </div>
+              ))}
           </div>
-
         </section>
       </div>
     </>
