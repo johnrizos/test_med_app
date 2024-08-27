@@ -1,97 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./FindDoctorSearch.css";
 import consulting from "./images/consulting.png";
 import DoctorCard from "../DoctorCard/DoctorCard";
 import AppointmentForm from "../AppointmentForm/AppointmentForm";
+import {doctors,specialityListData} from "./doctorsData";
 
 const FindDoctorSearch = () => {
-  const specialityListData = {
-    1: "Cardiologist",
-    2: "Dermatologist",
-    3: "Dentist",
-    4: "Gynecologist",
-    5: "Neurologist",
-    6: "Orthopedic",
-    7: "Pediatrician",
-    8: "Psychiatrist",
-    9: "Urologist",
-  };
-
-  const doctors = {
-    1: {
-      name: "Dr. John Doe",
-      specialist: 3,
-      experience: 9,
-      rating: 5,
-    },
-    2: {
-      name: "Dr. Chris Red",
-      specialist: 3,
-      experience: 13,
-      rating: 4,
-    },
-    3: {
-      name: "Dr. Anna Green",
-      specialist: 3,
-      experience: 12,
-      rating: 5,
-    },
-    4: {
-      name: "Dr. John Rizos",
-      specialist: 3,
-      experience: 15,
-      rating: 5,
-    },
-    5: {
-      name: "Dr. Maria Smith",
-      specialist: 1,
-      experience: 10,
-      rating: 4,
-    },
-    6: {
-      name: "Dr. George Brown",
-      specialist: 1,
-      experience: 8,
-      rating: 3,
-    },
-    7: {
-      name: "Dr. Maria Smith",
-      specialist: 1,
-      experience: 10,
-      rating: 4,
-    },
-    8: {
-      name: "Dr. George Brown",
-      specialist: 1,
-      experience: 8,
-      rating: 3,
-    },
-    9: {
-      name: "Dr. Maria Smith",
-      specialist: 1,
-      experience: 10,
-      rating: 4,
-    },
-    10: {
-      name: "Dr. George Brown",
-      specialist: 1,
-      experience: 8,
-      rating: 3,
-    },
-    11: {
-      name: "Dr. Maria Smith",
-      specialist: 1,
-      experience: 10,
-      rating: 4,
-    },
-  };
 
   const [selectedDoctorId, setSelectedDoctorId] = useState(null);
 
   const [doctorsFilter, setDoctorsFilter] = useState({});
 
+  const [appointmentbookings, setAppointmentbookings] = useState({});
+
+  const [isBookedAppointmentModal, setIsBookedAppointmentModal] = useState(false);
+
+
+
+  const doctorAppointment = (doctorId) => {
+    console.log("doctor", Object.keys(doctors).find(key => key === doctorId) 
+    ? doctors[doctorId] 
+    : null);
+    return Object.keys(doctors).find(key => key === doctorId) 
+      ? doctors[doctorId] 
+      : null;
+  };
+
+  const cancelAppointment = (doctorId) => {
+    console.log("doctorId",doctorId);
+    const newAppointmentbookings = {...appointmentbookings};
+    delete newAppointmentbookings[doctorId];
+    setAppointmentbookings(newAppointmentbookings);
+  }
+  
+
   const findDoctorFromSpeciality = (doctors,speciality) => {
     console.log("speciality",speciality);
+
+    setSpecialitySearchInput(specialityListData[speciality]);
+
+
     
     const doctorsFilter = Object.fromEntries(
       Object.entries(doctors).filter(([key, value]) => Number(value.specialist) === Number(speciality))
@@ -99,10 +47,11 @@ const FindDoctorSearch = () => {
     console.log("doctorsFilter",doctorsFilter);
     
     setDoctorsFilter(doctorsFilter);
+    onChangeSpecialitySearchInput(specialityListData[speciality], specialityListData);
   };
 
 
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -122,14 +71,29 @@ const FindDoctorSearch = () => {
   const [specialitySearchInput, setSpecialitySearchInput] = useState("");
   const [specialityList, setSpecialityList] = useState(specialityListData);
   const onChangeSpecialitySearchInput = (textInput, list) => {
+    console.log("change working");
+    
     const currentData = Object.fromEntries(
       Object.entries(list).filter(([key, value]) =>
         list[key].toLowerCase().includes(textInput.toLowerCase())
       )
     );
-    console.log(currentData);
+    console.log("currentData",currentData);
     setSpecialityList(currentData);
   };
+
+  // I want to return true or false if the doctor has an appointment
+  const checkAppointment = (doctorId) => {
+    return Object.keys(appointmentbookings).find(
+      (key) => key === doctorId
+    )
+      ? true
+      : false;
+  }
+
+  useEffect(() => {
+    console.log("Updated appointmentbookings:", appointmentbookings);
+  }, [appointmentbookings]); // This effect will run when the appointmentbookings state changes
 
   return (
     <>
@@ -215,6 +179,13 @@ const FindDoctorSearch = () => {
                   experience={doctors[key].experience}
                   rating={doctors[key].rating}
                   image=""
+                  doctorId={key}
+                  setSelectedDoctorId={setSelectedDoctorId}
+                  handleShow={handleShow}
+                  checkAppointment={checkAppointment(key)}
+                  setIsBookedAppointmentModal={setIsBookedAppointmentModal}
+                  
+                                   
                 />
             </div>
               ))}
@@ -222,7 +193,15 @@ const FindDoctorSearch = () => {
         </section>
       </div>
       {showModal && (
-      <AppointmentForm  handleClose={handleClose} />
+      <AppointmentForm 
+      setAppointmentbookings={setAppointmentbookings} 
+      doctorAppointment={doctorAppointment(selectedDoctorId)} 
+      selectedDoctorId={selectedDoctorId} 
+      appointmentbookings={appointmentbookings[selectedDoctorId] ? appointmentbookings[selectedDoctorId] : null}
+      handleClose={handleClose} 
+      isBookedAppointmentModal = {isBookedAppointmentModal}
+      setIsBookedAppointmentModal={setIsBookedAppointmentModal}
+      cancelAppointment={cancelAppointment} />
       )}
     </>
   );

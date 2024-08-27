@@ -8,3 +8,14 @@ border:1px #4CAF50 solid;
 background-color:#358037;
 border:1px #4CAF50 solid;
 }
+
+
+.book-cta-cancel{
+background-color:#f44336;
+border:1px #f44336 solid;
+
+}
+.book-cta-cancel:hover{
+background-color:#d32f2f;
+border:1px #f44336 solid;
+}

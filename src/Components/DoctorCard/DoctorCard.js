@@ -20,10 +20,18 @@ const DoctorCard = (props) => {
           )) : ""} </p>
 
         </div>
-          <a href="#" className="btn btn-primary btn-lg btn-block book-cta">
+        {!props.checkAppointment ?  (<div  className="btn btn-primary btn-lg btn-block book-cta" onClick={()=>{props.handleShow(); props.setSelectedDoctorId(props.doctorId);} }>
           Book Appointment<br />
           No Booking Fee
-          </a>
+          </div>) : (<div  className="btn btn-primary btn-lg btn-block book-cta-cancel" onClick={()=>{props.handleShow(); props.setSelectedDoctorId(props.doctorId); props.setIsBookedAppointmentModal(true)} }>
+          Cancel Appointment<br />
+          No Booking Fee
+          </div>) 
+          }
+          {/* <div  className="btn btn-primary btn-lg btn-block book-cta" onClick={()=>{props.handleShow(); props.setSelectedDoctorId(props.doctorId);} }>
+          Book Appointment<br />
+          No Booking Fee
+          </div> */}
       </div>
     </>
   );
