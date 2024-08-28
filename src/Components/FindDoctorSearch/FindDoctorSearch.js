@@ -5,13 +5,14 @@ import DoctorCard from "../DoctorCard/DoctorCard";
 import AppointmentForm from "../AppointmentForm/AppointmentForm";
 import {doctors,specialityListData} from "./doctorsData";
 
-const FindDoctorSearch = () => {
+const FindDoctorSearch = (props) => {
 
   const [selectedDoctorId, setSelectedDoctorId] = useState(null);
 
   const [doctorsFilter, setDoctorsFilter] = useState({});
 
-  const [appointmentbookings, setAppointmentbookings] = useState({});
+  const  appointmentbookings= props.appointmentbookings;
+  const setAppointmentbookings= props.setAppointmentbookings;
 
   const [isBookedAppointmentModal, setIsBookedAppointmentModal] = useState(false);
 
