@@ -11,6 +11,7 @@
   padding: 1rem 2rem;
   background-color: #4CAF50;
   position: fixed;
+  top:0;
   width: 100%;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -26,6 +27,10 @@
   align-items: center;
 
 }
+.navbar ul{
+  margin:0;
+}
+
 .nav-links {
   list-style: none;
   display: flex;

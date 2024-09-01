@@ -9,7 +9,7 @@ import Sign_Up from './Components/Sign_Up/Sign_Up';
 // import FindDoctorSearch from './Components/FindDoctorSearch/FindDoctorSearch';
 import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
 import Notification from './Components/Notification/Notification';
-import {doctors,specialityListData} from "./Components/FindDoctorSearch/doctorsData";
+import ReviewForm from './Components/ReviewForm/ReviewForm';
 
 
 import './App.css';
@@ -17,7 +17,26 @@ import './App.css';
 function App() {
 
   const [showNotification, setShowNotification] = useState(false);
-  const [appointmentbookings, setAppointmentbookings] = useState({});
+  // const [appointmentbookings, setAppointmentbookings] = useState({});
+  const [appointmentbookings, setAppointmentbookings] = useState(() => {
+    const savedBookings = localStorage.getItem("appointmentbookings");
+    return savedBookings ? JSON.parse(savedBookings) : {};
+  });
+
+  // check if exist appointmentbookings and set them in local storage if exist update the state appointmentbookings
+  useEffect(() => {
+    if (localStorage.getItem("appointmentbookings")) {
+      setAppointmentbookings(JSON.parse(localStorage.getItem("appointmentbookings")));
+    }
+  }, []);
+
+  // update the local storage when the appointmentbookings state changes
+  useEffect(() => {
+    console.log("appointmentbookings", appointmentbookings);
+    
+    localStorage.setItem("appointmentbookings", JSON.stringify(appointmentbookings));
+  }, [appointmentbookings]);
+
 
   // check if the appointmentbookings object is empty and set the showNotification state accordingly
   useEffect(() => {
@@ -42,6 +61,7 @@ function App() {
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Sign_Up/>}/>
             <Route path="find-doctor" element={<BookingConsultation appointmentbookings={appointmentbookings} setAppointmentbookings={setAppointmentbookings}/>}/>
+            <Route path="reviews" element={<ReviewForm appointmentbookings={appointmentbookings}/>}/>
 
 
           </Routes>
