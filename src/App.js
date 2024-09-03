@@ -10,6 +10,8 @@ import Sign_Up from './Components/Sign_Up/Sign_Up';
 import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
 import Notification from './Components/Notification/Notification';
 import ReviewForm from './Components/ReviewForm/ReviewForm';
+import ProfileCard from './Components/ProfileCard/ProfileCard';
+import ReportsLayout from './Components/ReportsLayout/ReportsLayout';
 
 
 import './App.css';
@@ -62,6 +64,8 @@ function App() {
             <Route path="/signup" element={<Sign_Up/>}/>
             <Route path="find-doctor" element={<BookingConsultation appointmentbookings={appointmentbookings} setAppointmentbookings={setAppointmentbookings}/>}/>
             <Route path="reviews" element={<ReviewForm appointmentbookings={appointmentbookings}/>}/>
+            <Route path="profile" element={<ProfileCard/>}/>
+            <Route path="reports" element={<ReportsLayout appointmentbookings={appointmentbookings}/>}/>
 
 
           </Routes>

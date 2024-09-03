@@ -34,7 +34,7 @@ function Navbar() {
         <div className="logo">
           <h4>StayHealthy</h4>
         </div>
-        <div id="menu-icon" onClick={()=>setFlagMenu(!flagMenu)}>
+        <div id="menu-icon" onClick={() => setFlagMenu(!flagMenu)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -66,7 +66,20 @@ function Navbar() {
             {isLoggedIn ? (
               <>
                 <li>
-                  <Link to="/profile">Welcome, {username}</Link>
+                  <div className="dropdown">
+                  {/* <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <Link  to="/profile">Welcome, {username}</Link>
+                    </a> */}
+                      <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown link
+                     </a>
+                    <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><Link to="/profile" className="dropdown-item"  /> Profile</li>
+                      <li><a href="#" className="dropdown-item" >Appointments</a></li>
+                    </ul>
+
+                  </div>
                 </li>
                 <li>
                   <button onClick={handleLogout}>Logout</button>
@@ -88,8 +101,8 @@ function Navbar() {
             )}
           </ul>
         )}
-         <ul className="nav-links"> 
-           <li>
+        <ul className="nav-links">
+          <li>
             <Link to="/">Home</Link>
           </li>
           <li>
@@ -104,8 +117,20 @@ function Navbar() {
           {isLoggedIn ? ( // Conditional rendering
             <>
               <li>
-                <Link to="/profile">Welcome, {username}</Link>
-              </li>
+              <div className="dropdown">
+                  {/* <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+
+                    <Link  to="/profile">Welcome, {username}</Link>
+                    </a> */}
+                      <a className="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                      <Link  to="/profile">Welcome, {username}</Link>
+                      </a>
+                    <ul className="dropdown-menu text-secondary" aria-labelledby="dropdownMenuLink">
+                    <li><Link to="/profile"   ><span className="dropdown-item" >Your Profile</span></Link></li>
+                    <li><Link to="/reports"   ><span className="dropdown-item" >Your Reports</span></Link></li>
+                    </ul>
+
+                  </div>              </li>
               <li>
                 <button onClick={handleLogout}>Logout</button>
               </li>
@@ -125,7 +150,7 @@ function Navbar() {
               </li>
             </>
           )}
-        </ul> 
+        </ul>
       </nav>
     </div>
   );
