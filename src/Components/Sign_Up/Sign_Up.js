@@ -20,23 +20,23 @@ const Sign_Up = () => {
    const register = async (e) => {
     e.preventDefault(); // Prevent default form submission
     // API Call to register user
-    const response = await fetch(`${API_URL}/api/auth/register`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            name: name,
-            email: email,
-            password: password,
-            phone: phone,
-        }),
-    });
-    const json = await response.json(); // Parse the response JSON
+    // const response = await fetch(`${API_URL}/api/auth/register`, {
+    //     method: "POST",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //         name: name,
+    //         email: email,
+    //         password: password,
+    //         phone: phone,
+    //     }),
+    // });
+    // const json = await response.json(); // Parse the response JSON
     // dummmydata
-    // const json = { authtoken:
-    //     "123456789"
-    // };
+    const json = { authtoken:
+        "123456789"
+    };
     
     if (json.authtoken) {
         // Store user data in session storage
